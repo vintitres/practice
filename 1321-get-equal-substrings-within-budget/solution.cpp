@@ -1,19 +1,19 @@
 class Solution {
 public:
-    int cost(char x, char y) {
-        return (int)(x < y ? y - x : x - y);
-    }
     int equalSubstring(string s, string t, int maxCost) {
-        int begin = 0, end = 0, currCost = 0, maxLen = 0, ss = s.size();
-        while (end < ss) {
-            currCost += cost(s[end], t[end]);
-            ++end;
-            while (currCost > maxCost) {
-                currCost -= cost(s[begin], t[begin]);
-                ++begin;
-            }
-            maxLen = max(maxLen, end - begin);
+        int ssize = s.size();
+        vector<int> costs;
+        for (int i = 0; i < ssize; ++i) {
+            costs.push_back(abs(s[i] - t[i]));
         }
-        return maxLen;
+        int max_len = 0;
+        for (int b = 0, e = 0, sum = 0; e < ssize; ++e) {
+            sum += costs[e];
+            while (sum > maxCost) {
+                sum -= costs[b++];
+            }
+            max_len = max(max_len, e - b + 1);
+        }
+        return max_len;
     }
 };
