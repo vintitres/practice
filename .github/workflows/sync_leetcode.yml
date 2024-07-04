@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Sync
-        uses: vintitres/leetcode-sync@err
+        uses: joshcai/leetcode-sync@1.7
         with:
           github-token: ${{ github.token }}
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
