@@ -18,3 +18,4 @@ jobs:
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           verbose: true
           commit-header: '[LeetCode Sync]'
+          destination-folder: leetcode
