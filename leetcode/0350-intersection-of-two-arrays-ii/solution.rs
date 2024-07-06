@@ -13,7 +13,6 @@ impl Solution {
         let mut intersection = vec![];
         for (num, count) in nums1m {
             if let Some(&count2) = nums2m.get(&num) {
-                //println!("{} {}", count, count2);
                 intersection.resize(intersection.len() + std::cmp::min(count,count2), num);
             }
         }
