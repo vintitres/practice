@@ -2,7 +2,7 @@ impl Solution {
     pub fn pass_the_pillow(n: i32, time: i32) -> i32 {
         match time % (2 * n - 2) {
             t if t < n => t + 1,
-            t => n - (t + 1 - n)
+            t => 2 * n - (t + 1)
         } 
     }
 }
