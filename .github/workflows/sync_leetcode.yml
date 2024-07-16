@@ -19,3 +19,4 @@ jobs:
           verbose: true
           commit-header: '[LeetCode Sync]'
           destination-folder: leetcode
+          filter-duplicate-secs: 1
