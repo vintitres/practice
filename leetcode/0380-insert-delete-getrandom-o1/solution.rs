@@ -34,10 +34,9 @@ impl RandomizedSet {
             let remove_index = *e.get();
             e.remove();
             //println!("remove {remove_index} {:?}", self.set);
-            let last_val = self.set.pop().unwrap();
+            self.set.swap_remove(remove_index);
             if self.set.len() != remove_index {
-                self.set[remove_index] = last_val;
-                *self.pos.get_mut(&last_val).unwrap() = remove_index;
+                *self.pos.get_mut(&self.set[remove_index]).unwrap() = remove_index;
             }
             true
         } else {
