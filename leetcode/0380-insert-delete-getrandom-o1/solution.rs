@@ -6,7 +6,6 @@ use std::collections::hash_map::Entry;
 struct RandomizedSet {
     set: Vec<i32>,
     pos: HashMap<i32, usize>,
-    rng: ThreadRng,
 }
 
 
@@ -17,7 +16,7 @@ struct RandomizedSet {
 impl RandomizedSet {
 
     fn new() -> Self {
-        Self {set: Vec::new(), pos: HashMap::new(), rng: rand::thread_rng()}
+        Self {set: Vec::new(), pos: HashMap::new()}
     }
     
     fn insert(&mut self, val: i32) -> bool {
@@ -46,8 +45,9 @@ impl RandomizedSet {
         }
     }
     
-    fn get_random(&mut self) -> i32 {
-        self.set[self.rng.gen::<usize>() % self.set.len()]
+    fn get_random(&self) -> i32 {
+        let index = rand::thread_rng().gen_range(0..self.set.len());
+        self.set[index]
     }
 }
 
