@@ -24,23 +24,23 @@ impl Solution {
         let mut forest = Vec::new();
         let mut root = root.borrow_mut();
         let del = to_delete.remove(&root.val);
-        if let Some(left) = &root.left {
-            let (left_del, mut left_forest) = Self::_del_nodes(&left, to_delete);
-            if left_del {
-                root.left = None;
-            } else if del {
-                forest.push(Some(left.clone()));
+        let mut f = |child: &Rc<RefCell<TreeNode>>| {
+            let (child_del, mut child_forest) = Self::_del_nodes(&child, to_delete);
+            forest.append(&mut child_forest);
+            if !child_del && del {
+                forest.push(Some(child.clone()));
             }
-            forest.append(&mut left_forest);
+            child_del
+        };
+        if let Some(left) = &root.left {
+            if f(left) {
+                root.left = None;
+            }
         }
         if let Some(right) = &root.right {
-            let (right_del, mut right_forest) = Self::_del_nodes(&right, to_delete);
-            if right_del {
+            if f(right) {
                 root.right = None;
-            } else if del {
-                forest.push(Some(right.clone()));
             }
-            forest.append(&mut right_forest);
         }
         (del, forest)
     }
