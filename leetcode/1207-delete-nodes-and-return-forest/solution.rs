@@ -22,14 +22,8 @@ use std::collections::HashSet;
 impl Solution {
     fn _del_nodes(root: &Rc<RefCell<TreeNode>>, to_delete: &mut HashSet<i32>) -> (bool, Vec<Option<Rc<RefCell<TreeNode>>>>) {
         let mut forest = Vec::new();
-        let val = root.borrow().val;
-        let del = if to_delete.contains(&val) {
-            to_delete.remove(&val);
-            true
-        } else {
-            false
-        };
         let mut root = root.borrow_mut();
+        let del = to_delete.remove(&root.val);
         if let Some(left) = &root.left {
             let (left_del, mut left_forest) = Self::_del_nodes(&left, to_delete);
             if left_del {
