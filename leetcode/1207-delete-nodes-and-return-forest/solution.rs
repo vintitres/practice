@@ -24,7 +24,7 @@ impl Solution {
         let mut forest = Vec::new();
         let mut root = root.borrow_mut();
         let del = to_delete.remove(&root.val);
-        let mut f = |child_ref: &mut Option<Rc<RefCell<TreeNode>>>| {
+        let mut f = |child_ref: &mut Option<_>| {
             if let Some(child) = &child_ref {
                 let (child_del, mut child_forest) = Self::_del_nodes(&child, to_delete);
                 forest.append(&mut child_forest);
