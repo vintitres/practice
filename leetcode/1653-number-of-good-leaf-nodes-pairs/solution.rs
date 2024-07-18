@@ -32,10 +32,7 @@ impl Solution {
                 let (right_pairs, right_depths) = Self::pairs_and_depths(right, distance);
                 pairs += left_pairs + right_pairs;
                 pairs += left_depths.iter().enumerate().map(|(depth, count)| {
-                    let r = std::cmp::max(0, distance as i32 - depth as i32 - 1) as usize;
-                    let right_leaves = right_depths.iter().take(r).sum::<i32>();
-                    //println!("{depth} {r} {count}*{right_leaves}");
-                    count * right_leaves
+                    count * right_depths.iter().take(distance.saturating_sub(depth + 1)).sum::<i32>()
                 }).sum::<i32>();
                 depths.push(0);
                 for i in 0..std::cmp::max(left_depths.len(), right_depths.len()) {
