@@ -6,12 +6,17 @@ class LRUCache {
 
     void add_access(int key) {
         auto it = queue_pos.find(key);
-        if (it != queue_pos.end()) {
+        if (it == queue_pos.end()) {
+            access_queue.push_front(key);
+            queue_pos[key] = access_queue.begin(); 
+        } else if (it->second == access_queue.begin()) {
+            return;
+        } else if (it != queue_pos.end()) {
             access_queue.erase(it->second);
+            access_queue.push_front(key);
+            it->second = access_queue.begin();
         }
-        access_queue.push_front(key);
-        queue_pos[key] = access_queue.begin();
-
+             
     }
 
 public:
