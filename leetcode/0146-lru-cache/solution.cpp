@@ -1,6 +1,6 @@
 class LRUCache {
     int capacity;
-    map<int, int> cache;
+    unordered_map<int, int> cache;
     list<int> access_queue;
     unordered_map<int, list<int>::iterator> queue_pos;
 
