@@ -44,8 +44,9 @@ public:
         for (int tho = 0; num > 0; ++tho) {
             auto w = thousandsToWords(num % 1000);
             if (num % 1000 != 0 && tho > 0) {
-                w.push_back(tho <= thousands.size() ? thousands[tho - 1]
-                                                   : "10^" + to_string(tho * 3));
+                w.push_back(tho <= thousands.size()
+                                ? thousands[tho - 1]
+                                : "10^" + to_string(tho * 3));
             }
             extend(w, words);
             words = w;
@@ -53,13 +54,8 @@ public:
         }
 
         return std::accumulate(
-            std::next(words.begin()), 
-            words.end(), 
-            words[0], 
-            [](std::string a, std::string b) {
-                return a + " " + b;
-            }
-        );
+            std::next(words.begin()), words.end(), words[0],
+            [](std::string a, std::string b) { return a + " " + b; });
     }
 };
 
