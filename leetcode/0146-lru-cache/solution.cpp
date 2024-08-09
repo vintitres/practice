@@ -31,7 +31,7 @@ public:
         if (it == queue_pos.end()) {
             return -1;
         }
-        assert(it->second->first == key);
+        //assert(it->second->first == key);
         int val = it->second->second;
         add_access(it, key, val);
         return val;
