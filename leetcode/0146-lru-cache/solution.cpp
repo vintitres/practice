@@ -24,6 +24,7 @@ class LRUCache {
 
 public:
     LRUCache(int capacity) : capacity(capacity) {
+        queue_pos.reserve(capacity);
     }
     
     int get(int key) {
