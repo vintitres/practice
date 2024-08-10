@@ -1,7 +1,29 @@
 const char SIDES[] = {'l', 'r', 'u', 'd'};
-typedef set<tuple<int, int, char>> VisSet;  // could be 3 dim array of bools (grid.size() x grid[0].size() x 4)
+typedef vector<vector<short>> VisSet;
+
 
 class Solution {
+    short smask(char side) {
+        if (side == 'l') {
+            return 1;
+        } else if (side == 'r') {
+            return 1<<1;
+        } else if (side == 'u') {
+            return 1<<2;
+        } else if (side == 'd') {
+            return 1<<3;
+        }
+        assert(false);
+        return 0;
+    }
+    bool contains(VisSet const& vis, tuple<int,int,char> const& xys) {
+        auto [x,y,side] = xys;
+        return vis[x][y] & smask(side);
+    }
+    void insert(VisSet & vis, tuple<int,int,char> const& xys) {
+        auto [x,y,side] = xys;
+        vis[x][y] |= smask(side);
+    }
     void fill_area(int x, int y, char side, vector<string> const& grid,
                    VisSet& vis) {
         queue<tuple<int, int, char>> q;
@@ -11,7 +33,7 @@ class Solution {
             if (x < 0 || x >= grid.size() || y < 0 || y >= grid[0].size()) {
                 return;
             }
-            if (!vis.contains(el)) {
+            if (!contains(vis, el)) {
                 q.push(el);
             }
         };
@@ -19,13 +41,13 @@ class Solution {
         while (!q.empty()) {
             auto xys = q.front();
             q.pop();
-            if (vis.contains(xys)) {
+            if (contains(vis, xys)) {
                 continue;
             }
             auto [x, y, side] = xys;
             if (grid[x][y] == ' ') {
                 for (char side : SIDES) {
-                    vis.insert({x, y, side});
+                    insert(vis, {x, y, side});
                 }
                 qadd({x + 1, y, 'u'});
                 qadd({x - 1, y, 'd'});
@@ -33,25 +55,25 @@ class Solution {
                 qadd({x, y - 1, 'r'});
             } else if (grid[x][y] == '/') {
                 if (side == 'l' || side == 'u') {
-                    vis.insert({x, y, 'l'});
-                    vis.insert({x, y, 'u'});
+                    insert(vis, {x, y, 'l'});
+                    insert(vis, {x, y, 'u'});
                     qadd({x - 1, y, 'd'});
                     qadd({x, y - 1, 'r'});
                 } else {
-                    vis.insert({x, y, 'r'});
-                    vis.insert({x, y, 'd'});
+                    insert(vis, {x, y, 'r'});
+                    insert(vis, {x, y, 'd'});
                     qadd({x + 1, y, 'u'});
                     qadd({x, y + 1, 'l'});
                 }
             } else { // "\"
                 if (side == 'l' || side == 'd') {
-                    vis.insert({x, y, 'l'});
-                    vis.insert({x, y, 'd'});
+                    insert(vis, {x, y, 'l'});
+                    insert(vis, {x, y, 'd'});
                     qadd({x + 1, y, 'u'});
                     qadd({x, y - 1, 'r'});
                 } else {
-                    vis.insert({x, y, 'r'});
-                    vis.insert({x, y, 'u'});
+                    insert(vis, {x, y, 'r'});
+                    insert(vis, {x, y, 'u'});
                     qadd({x, y + 1, 'l'});
                     qadd({x - 1, y, 'd'});
                 }
@@ -70,11 +92,11 @@ public:
     int regionsBySlashes(vector<string>& grid) {
         //print(grid);
         int count_areas = 0;
-        VisSet vis;
+        VisSet vis(grid.size(), vector<short>(grid[0].size(), 0));
         for (int x = 0; x < grid.size(); ++x) {
             for (int y = 0; y < grid[0].size(); ++y) {
                 for (char side : SIDES) {
-                    if (!vis.contains({x, y, side})) {
+                    if (!contains(vis, {x, y, side})) {
                         ++count_areas;
                         //cout << "!" << endl;
                         fill_area(x, y, side, grid, vis);
