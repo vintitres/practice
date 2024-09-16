@@ -12,7 +12,7 @@ class Solution:
         # print(Solution.minutes(timePoints[0]))
         for timePoint in timePoints[1:]:
             # print(Solution.minutes(timePoint))
-            print(minDiff, "D")
+            # print(minDiff, "D")
             minDiff = min(minDiff, Solution.minutes(timePoint) - Solution.minutes(lastTimePoint))
             if minDiff == 0:
                 return 0
