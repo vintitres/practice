@@ -1,15 +1,17 @@
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
-        num = 1
-        nums = []
-        while len(nums) < n:
+        return list(self.fn(n))
+
+    def fn(self, n: int):
+        yield 1
+        num = 10
+        while num > 1:
             if num <= n:
-                nums.append(num)
+                yield num
                 num *= 10
             else:
                 num = int(num / 10)
                 while num % 10 == 9: 
                     num = int(num / 10)
                 num += 1
-        return nums
         
