@@ -3,11 +3,10 @@ from sortedcontainers import SortedSet
 
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals = [(interval[1], interval[0]) for interval in intervals]
-        intervals.sort()
+        intervals.sort(key = lambda i: i[1])
         prev_end = -600000
         count = 0
-        for (end, start) in intervals:
+        for (start, end) in intervals:
             if start >= prev_end:
                 count += 1
                 prev_end = end
