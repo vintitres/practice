@@ -10,7 +10,6 @@ class Solution:
                 num = int(num / 10)
                 while num % 10 == 9: 
                     num = int(num / 10)
-                else:
-                    num += 1
+                num += 1
         return nums
         
