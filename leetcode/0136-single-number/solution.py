@@ -1,4 +1,5 @@
 import itertools
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-        return list(itertools.accumulate(nums, xor))[-1]
+        *_, last = itertools.accumulate(nums, xor)
+        return last
