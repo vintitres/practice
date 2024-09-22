@@ -8,8 +8,8 @@ class Solution:
         def get(product, index):
             return product[index] if index >= 0 and index < len(product) else 1
         product = 1
-        ret = [None] * len(nums)
+        ret = []
         for i, num in enumerate(nums):
-            ret[i] = product * get(productR, i + 1)
+            ret.append(product * get(productR, i + 1))
             product *= num
         return ret
