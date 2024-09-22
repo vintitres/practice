@@ -21,9 +21,5 @@ class Solution:
             mx = max(mx, rr, right, rmx)
         return left, right, mx
             
-            
-            
-
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        _, _, mx = self.longestZigZag_(root)
-        return mx - 1
+        return self.longestZigZag_(root)[-1] - 1
