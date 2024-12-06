@@ -14,13 +14,10 @@ public:
             }
             sum += i;
             if (sum > maxSum) {
-                cout << "!" << i << endl;
                 break;
             }
-            cout << i <<endl;
             ++count;
         }
-        cout<< "=" << sum << endl;
         return count;
     }
 };
