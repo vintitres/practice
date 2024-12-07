@@ -1,5 +1,5 @@
 class Solution {
-    bool canDo(vector<int>& nums, int maxOperations, int penalty) {
+    bool canDo(vector<int> const& nums, int maxOperations, int penalty) {
         int op = 0;
         for (int num : nums) {
             op += num / penalty;
