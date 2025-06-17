@@ -25,7 +25,6 @@ class Solution:
         divisions = Solution.modbicoef(n - 1, k, mod)
         # how many ways can we color k + 1 sections with m colors, but can't have 2 consecutive same colors
         colorings = m * pow(m - 1, k, mod)
-        print(divisions, colorings)
         return int((divisions * colorings) % mod)
 
 
