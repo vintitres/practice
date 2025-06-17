@@ -15,13 +15,11 @@ class Solution:
                 m = nums[j]
                 o = nums[k]
                 s = n + m + o
-                if s == 0:
-                    if len(triplets) == 0 or triplets[-1][1] != m or triplets[-1][2] != o:
-                        triplets.append([n, m, o])
-                    j += 1
-                elif s > 0:
+                if s > 0:
                     k -= 1
                 else:
+                    if s == 0 and (len(triplets) == 0 or triplets[-1][1] != m or triplets[-1][2] != o):
+                        triplets.append([n, m, o])
                     j += 1
         return triplets
 
