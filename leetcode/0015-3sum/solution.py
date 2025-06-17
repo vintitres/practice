@@ -3,7 +3,6 @@ class Solution:
         nums = sorted(nums)  # create a sorted copy
         triplets = []
         last = nums[0] + 1
-        print(nums)
         for i in range(0, len(nums)):
             n = nums[i]
             if last == n:
@@ -17,7 +16,7 @@ class Solution:
                 o = nums[k]
                 s = n + m + o
                 if s == 0:
-                    if len(triplets) == 0 or triplets[-1][0] != n or triplets[-1][1] != m or triplets[-1][2] != o:
+                    if len(triplets) == 0 or triplets[-1][1] != m or triplets[-1][2] != o:
                         triplets.append([n, m, o])
                     j += 1
                 elif s > 0:
