@@ -17,7 +17,7 @@ class Solution:
                     while j < k and nums[k] == nums[k + 1]: 
                         k -= 1
                 else:
-                    if s == 0 and (not triplets or triplets[-1][1] != m or triplets[-1][2] != o):
+                    if s == 0:
                         triplets.append([n, m, o])
                     j += 1
                     while j < k and nums[j] == nums[j - 1]:
