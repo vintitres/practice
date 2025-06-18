@@ -4,7 +4,6 @@ class Solution:
         i = 0
         res = []
         ln = len(nums)
-        print(nums)
         while i < ln:
             if nums[i + 2] > nums[i] + k:
                 return []
