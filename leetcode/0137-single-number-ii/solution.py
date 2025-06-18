@@ -11,7 +11,6 @@ class Solution:
                 n = int(n / 2)
         x = 0
         pow2 = 1
-        print(bit_count)
         for i in range(Solution.BITS):
             if bit_count[i] % 3 != 0:
                 x += pow2
