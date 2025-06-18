@@ -11,7 +11,6 @@ class Solution:
                 flat_board += reversed(row)
             flip = not flip
         board = flat_board
-        print(board)
         n = len(board)
         seen = [False] * n
         queue = deque()
