@@ -18,9 +18,7 @@ class Solution:
         queue.append((1, 0))
         while queue:
             curr, rolls = queue.popleft()
-            print(curr, n)
             for next_pos in range(curr + 1, min(curr + 6, n - 1) + 1):
-                print(next_pos)
                 next_pos = board[next_pos] if board[next_pos] != -1 else next_pos
                 if next_pos == n - 1:
                     return rolls + 1
