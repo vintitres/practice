@@ -1,4 +1,5 @@
 class Solution:
+    # so bad implementation
     def consolidate_sign(l: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
         consolidated = []
         last_gas = 0
