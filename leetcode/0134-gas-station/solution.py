@@ -4,12 +4,12 @@ class Solution:
             return -1
         start = 0
         gas_left = 0
-        for i in list(range(len(gas))) * 2:
+        for i in range(len(gas)):
             gas_left += gas[i] - cost[i]
             if gas_left < 0:
                 start = i + 1
                 gas_left = 0
-        return start % len(gas)
+        return start
 
 
                 
