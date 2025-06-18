@@ -2,12 +2,14 @@ class Solution:
     def divideArray(self, nums: List[int], k: int) -> List[List[int]]:
         nums = sorted(nums)
         i = 0
-        res = []
         ln = len(nums)
-        while i < ln:
-            if nums[i + 2] > nums[i] + k:
+        resln = int(ln / 3)
+        res = [0] * resln
+        while i < resln:
+            ii = i * 3
+            if nums[ii + 2] > nums[ii] + k:
                 return []
-            res += [[nums[i], nums[i + 1], nums[i + 2]]]
-            i += 3
+            res[i] = [nums[ii], nums[ii + 1], nums[ii + 2]]
+            i += 1
         return res
         
