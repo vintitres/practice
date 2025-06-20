@@ -1,7 +1,7 @@
 class Solution:
     def nextWords(self, word: str):
         for i in range(len(word)):
-            for c in (chr(x) for x in range(ord('a'), ord('z') + 1)):
+            for c in string.ascii_lowercase:
                 yield word[:i] + c + word[i + 1:]
 
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
