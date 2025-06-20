@@ -4,7 +4,7 @@ class Solution:
         right = 0
         sum_ = 0
         length = len(nums)
-        min_len = length
+        min_len = length + 1
         while right <= length:
             if sum_ < target:
                 if right == length:
@@ -15,7 +15,7 @@ class Solution:
                 min_len = min(min_len, right - left)
                 sum_ -= nums[left]
                 left += 1
-        if left == 0 and sum_ < target:
+        if min_len == length + 1:
             return 0
         return min_len
 
