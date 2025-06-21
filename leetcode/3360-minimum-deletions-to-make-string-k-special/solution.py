@@ -5,15 +5,18 @@ class Solution:
         counts = sorted(Counter(word).values())
         begin_sum = 0
         mi = len(word)
-        for begin in range(len(counts)):
+        length = len(counts)
+        for begin in range(length):
+            cb = counts[begin]
             end_sum = 0
-            for end in reversed(range(begin, len(counts))):
-                if counts[end] - counts[begin] <= k:
+            for end in reversed(range(begin, length)):
+                ce = counts[end]
+                if ce - cb <= k:
                     mi = min(mi, begin_sum + end_sum)
                     if end == len(counts) - 1:
                         return mi
                     break
-                end_sum += counts[end] - (counts[begin] + k)
-            begin_sum += counts[begin]
+                end_sum += ce - (cb + k)
+            begin_sum += cb
         return mi
         
