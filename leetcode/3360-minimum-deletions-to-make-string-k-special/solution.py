@@ -13,7 +13,7 @@ class Solution:
                 ce = counts[end]
                 if ce - cb <= k:
                     mi = min(mi, begin_sum + end_sum)
-                    if end == len(counts) - 1:
+                    if end == length - 1:
                         return mi
                     break
                 end_sum += ce - (cb + k)
