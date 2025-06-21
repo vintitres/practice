@@ -1,5 +1,6 @@
 class Solution:
     def utf8ByteCount(firstByte: int) -> int:
+
         bits = [(firstByte >> i) & 1 for i in [7, 6, 5, 4, 3]]
         if bits[0] == 0:
             return 1
@@ -13,7 +14,7 @@ class Solution:
         return -1
 
     def utf8IsNextByte(byte: int) -> bool:
-        return (byte >> 7) & 1 == 1 and (byte >> 6) & 1 == 0
+        return (byte >> 6) & 3 == 2
 
     def validUtf8(self, data: List[int]) -> bool:
         i = 0
