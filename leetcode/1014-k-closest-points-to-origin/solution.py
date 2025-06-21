@@ -1,8 +1,6 @@
 import heapq
 def dist(point: List[int]) -> float:
-    x = point[0]
-    y = point[1]
-    return sqrt(x * x + y * y)
+    return sqrt(point[0] ** 2 + point[1] ** 2)
 
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
