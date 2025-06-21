@@ -1,4 +1,5 @@
 import heapq
+
 def dist(point: List[int]) -> float:
     return sqrt(point[0] ** 2 + point[1] ** 2)
 
