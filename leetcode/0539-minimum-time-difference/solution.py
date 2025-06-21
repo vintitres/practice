@@ -1,17 +1,9 @@
 class Solution:
-    def minutes(timePoint: str) -> int:
-        hours = int(timePoint[:2])
-        minutes = int(timePoint[3:])
-        return hours * 60 + minutes
-
     def findMinDifference(self, timePoints: List[str]) -> int:
-        timePoints = [Solution.minutes(tp) for tp in sorted(timePoints)]
-        lastTimePoint = timePoints[0]
-        minDiff = timePoints[0] + 60 * 24 - timePoints[-1]
-        for timePoint in timePoints[1:]:
-            minDiff = min(minDiff, timePoint - lastTimePoint)
-            if minDiff == 0:
-                return 0
-            lastTimePoint = timePoint
+        timePoints = sorted(int(point[0:2]) * 60 + int(point[3:5]) for point in timePoints)
+        minDiff = 24 * 60 - timePoints[-1] + timePoints[0]
+        lastPoint = timePoints[0]
+        for point in timePoints[1:]:
+            minDiff = min(minDiff, point - lastPoint)
+            lastPoint = point
         return minDiff
-        
