@@ -12,12 +12,9 @@ class Solution:
             if len(closest_points) < k:
                 heapq.heappush(closest_points, (-d, point))
             else:
-                max_dist, max_point = heapq.heappop(closest_points)
-                max_dist = -max_dist
+                max_dist = -closest_points[0][0]
                 if d < max_dist:
-                    heapq.heappush(closest_points, (-d, point))
-                else:
-                    heapq.heappush(closest_points, (-max_dist, max_point))
+                    heapq.heappushpop(closest_points, (-d, point))
         return [point for _, point in closest_points]
 
         
