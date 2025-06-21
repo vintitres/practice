@@ -6,8 +6,7 @@ class Solution:
         begin_sum = 0
         mi = len(word)
         length = len(counts)
-        for begin in range(length):
-            cb = counts[begin]
+        for begin, cb in enumerate(counts):
             end_sum = 0
             for end in reversed(range(begin, length)):
                 ce = counts[end]
