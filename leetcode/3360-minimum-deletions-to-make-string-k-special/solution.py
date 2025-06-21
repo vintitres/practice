@@ -10,8 +10,6 @@ class Solution:
             for end in reversed(range(begin, len(counts))):
                 if counts[end] - counts[begin] <= k:
                     mi = min(mi, begin_sum + end_sum)
-                    if end == len(counts) - 1:
-                        return mi
                     break
                 end_sum += counts[end] - (counts[begin] + k)
             begin_sum += counts[begin]
