@@ -1,18 +1,17 @@
 class Solution:
     def utf8ByteCount(firstByte: int) -> int:
-        """
-        firstByte = firstByte >> 3
+        firstByte >>= 3
         if firstByte == 0b11110:
             return 4
-            """
-        if firstByte & 0b10000000 == 0b00000000:
-            return 1
-        if firstByte & 0b11100000 == 0b11000000:
-            return 2
-        if firstByte & 0b11110000 == 0b11100000:
+        firstByte >>= 1
+        if firstByte == 0b1110:
             return 3
-        if firstByte & 0b11111000 == 0b11110000:
-            return 4
+        firstByte >>= 1
+        if firstByte == 0b110:
+            return 2
+        firstByte >>= 2
+        if firstByte == 0b0:
+            return 1
         return -1
 
     def utf8IsNextByte(byte: int) -> bool:
