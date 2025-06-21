@@ -15,7 +15,7 @@ class Solution:
         return -1
 
     def utf8IsNextByte(byte: int) -> bool:
-        return (byte >> 6) & 3 == 2
+        return (byte >> 6) == 0b10
 
     def validUtf8(self, data: List[int]) -> bool:
         i = 0
