@@ -10,7 +10,8 @@ class Solution:
             if last_interval is None:
                 last_interval = interval
             elif interval[0] <= last_interval[1]:
-                last_interval[1] = max(last_interval[1], interval[1])
+                if last_interval[1] < interval[1]:
+                    last_interval[1] = interval[1]
             else:
                 new_intervals.append(last_interval)
                 last_interval = interval
