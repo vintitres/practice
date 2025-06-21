@@ -14,9 +14,6 @@ class Solution:
             return 1
         return -1
 
-    def utf8IsNextByte(byte: int) -> bool:
-        return (byte >> 6) == 0b10
-
     def validUtf8(self, data: List[int]) -> bool:
         i = 0
         l = len(data)
@@ -25,7 +22,7 @@ class Solution:
             if char_len == -1:
                 return False
             for j in range(1, char_len):
-                if i + j >= l or not Solution.utf8IsNextByte(data[i + j]):
+                if i + j >= l or not data[i + j] >> 6 == 0b10:
                     return False
             i += char_len
         return True
