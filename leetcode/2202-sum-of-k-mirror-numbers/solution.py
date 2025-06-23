@@ -36,7 +36,6 @@ class Solution:
         found_nums = 0
         for num in Solution.kmirrorsgen(k):
             if Solution.isKMirror(num, 10):
-                print(num)
                 nums_sum += num
                 found_nums += 1
                 if found_nums == n:
