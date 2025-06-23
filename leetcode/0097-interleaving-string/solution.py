@@ -3,11 +3,6 @@ class Solution:
         if len(s1) + len(s2) != len(s3):
             return False
         is_interleave = [[False] * (len(s2) + 1)] * (len(s1) + 1)
-        """
-        0, 0, 0: True
-        0, 1, 1: 
-
-        """
         for i in range(0, len(s1) + 1):
             for j in range(0, len(s2) + 1):
                 if i == 0 and j == 0:
