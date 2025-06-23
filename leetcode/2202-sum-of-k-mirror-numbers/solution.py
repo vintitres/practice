@@ -28,20 +28,15 @@ class Solution:
 
 
     def isKMirror(num: int, k: int) -> bool:
-        rev = Solution.reversed_k(num, k)
-        while num > 0:
-            if num % k != rev % k:
-                return False
-            num = int(num / k)
-            rev = int(rev / k)
-        return True
+        return num == Solution.reversed_k(num, k)
         
             
     def kMirror(self, k: int, n: int) -> int:
         nums_sum = 0
         found_nums = 0
-        for num in Solution.kmirrorsgen(10):
-            if Solution.isKMirror(num, k):
+        for num in Solution.kmirrorsgen(k):
+            if Solution.isKMirror(num, 10):
+                print(num)
                 nums_sum += num
                 found_nums += 1
                 if found_nums == n:
