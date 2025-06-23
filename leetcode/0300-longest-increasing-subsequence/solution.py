@@ -1,8 +1,22 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        longest = [1] * len(nums)
-        for i, num in enumerate(nums):
-            longest[i] = max(longest[j] if num > nums[j] else 0 for j in range(i)or [0]) + 1
-        return max(longest)
+        def search(nums: int, n: int) -> int:
+            left = 0
+            right = len(nums) - 1
+            while left < right:
+                mid = int((left + right) / 2)
+                if nums[mid] >= n:
+                    right = mid
+                else:
+                    left = mid + 1
+            return left
+                    
+        longest = []
+        for num in nums:
+            if not longest or num > longest[-1]:
+                longest.append(num)
+            else:
+                longest[search(longest, num)] = num
+        return len(longest)
 
         
