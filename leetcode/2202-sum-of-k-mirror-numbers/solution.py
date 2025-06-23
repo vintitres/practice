@@ -14,12 +14,10 @@ class Solution:
 
         prefix_len = 1
         while True:
-            print(prefix_len, 0)
             # prefix + rev(prefix)  # len = prefix_len * 2
             for prefix in range(k ** (prefix_len - 1), k ** prefix_len):
                 yield prefix * (k ** prefix_len) + Solution.reversed_k(prefix, k)
 
-            print(prefix_len, 1)
             # prefix + mid_char + rev(prefix)  # len = prefix_len * 2 + 1
             for prefix in range(k ** (prefix_len - 1), k ** prefix_len):
                 reversed_k_prefix = Solution.reversed_k(prefix, k)
@@ -37,7 +35,6 @@ class Solution:
             num = int(num / k)
             rev = int(rev / k)
         return True
-
         
             
     def kMirror(self, k: int, n: int) -> int:
@@ -45,7 +42,6 @@ class Solution:
         found_nums = 0
         for num in Solution.kmirrorsgen(k):
             if Solution.isKMirror(num, 10):
-                print(num, "!")
                 nums_sum += num
                 found_nums += 1
                 if found_nums == n:
