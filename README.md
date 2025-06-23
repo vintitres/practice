@@ -1,2 +1,2 @@
 # practice
-Derusting my coding with little Rust practice
+Derusting my coding with little Rust and leetcode practice
