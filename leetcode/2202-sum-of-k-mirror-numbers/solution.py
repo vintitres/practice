@@ -43,8 +43,8 @@ class Solution:
     def kMirror(self, k: int, n: int) -> int:
         nums_sum = 0
         found_nums = 0
-        for num in Solution.kmirrorsgen(10):
-            if Solution.isKMirror(num, k):
+        for num in Solution.kmirrorsgen(k):
+            if Solution.isKMirror(num, 10):
                 print(num, "!")
                 nums_sum += num
                 found_nums += 1
