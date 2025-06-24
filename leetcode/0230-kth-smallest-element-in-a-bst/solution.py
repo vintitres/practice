@@ -24,7 +24,6 @@ class Solution:
         queue = deque([(root, False)])
         while queue:
             node, processed = queue.popleft()
-            print(node.val, processed)
             if not processed:
                 if node.right:
                     queue.appendleft((node.right, False))
