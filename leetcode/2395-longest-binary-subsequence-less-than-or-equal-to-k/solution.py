@@ -4,17 +4,19 @@ class Solution:
         i = 0
         deleted = 0
         bit_n = 1 << (len(s) - 1)
-        while x > k:
-            while i < len(s) and s[i] == '0':
-                i += 1
-                bit_n //= 2
-            if i == len(s):
-                break
-            x -= bit_n
-            i += 1
+        if x <= k:
+            return len(s)
+        for bit in s:
+            if bit == '1':
+                x -= bit_n
+                deleted += 1
+                if x <= k:
+                    return len(s) - deleted
             bit_n //= 2
-            deleted += 1
-        return len(s) - deleted
+        return -1
+            
+
+
             
 
 
