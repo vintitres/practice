@@ -7,7 +7,6 @@ class Solution:
             if c in last_seen:
                 word_start = max(word_start, last_seen[c] + 1)
             last_seen[c] = i
-            print(i, i - word_start + 1)
             mx = max(mx, i - word_start + 1)
         return mx
 
