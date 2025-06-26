@@ -1,8 +1,6 @@
 class Solution:
     def longestSubsequence(self, s: str, k: int) -> int:
         x = int(s, 2)
-        if x == 0:
-            return len(s)
         i = 0
         deleted = 0
         bit_n = 0
