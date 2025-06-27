@@ -10,15 +10,15 @@ class Solution:
                     yield c + seq
                 chars[c] += 1
 
-    def is_rep_seq(seq: str, s: str, k: str) -> bool:
+    def is_rep_seq(seq: str, s_pos: Dict[chr, List[int]], k: str) -> bool:
         # could speed up by generating a char pos lookup dict for s as we do this a lot
         i = 0
         for j in range(k):
             for c in seq:
-                i = s.find(c, i)
-                if i == -1:
+                j = bisect_left(s_pos[c], i)
+                if j == len(s_pos[c]):
                     return False
-                i += 1
+                i = s_pos[c][j] + 1
         return True
 
     def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
@@ -30,11 +30,14 @@ class Solution:
         b = 0
         e = len(s) // k
         possible = {}
+        s_pos = defaultdict(list)
+        for i, c in enumerate(s):
+            s_pos[c].append(i)
         while b < e:
             m = (b + e + 1) // 2
             possible[m] = False
             for seq in Solution.possible_seq(chars.copy(), m):
-                if Solution.is_rep_seq(seq, s, k):
+                if Solution.is_rep_seq(seq, s_pos, k):
                     possible[m] = seq
                     break
             if possible[m]:
