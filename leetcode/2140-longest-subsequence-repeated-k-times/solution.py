@@ -3,15 +3,15 @@ class Solution:
         if length == 0:
             yield ""
             return
-        for c in reversed(sorted(chars.keys())):
+        for c in chars.keys():
             if chars[c] > 0:
                 chars[c] -= 1
                 for seq in Solution.possible_seq(chars, length - 1):
                     yield c + seq
                 chars[c] += 1
-        return
 
     def is_rep_seq(seq: str, s: str, k: str) -> bool:
+        # could speed up by generating a char pos lookup dict for s as we do this a lot
         i = 0
         for j in range(k):
             for c in seq:
@@ -23,7 +23,7 @@ class Solution:
 
     def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
         chars = {}
-        for c, v in Counter(s).items():
+        for c, v in reversed(sorted(Counter(s).items())):
             v //= k
             if v > 0:
                 chars[c] = v
