@@ -11,7 +11,6 @@ class Solution:
                 chars[c] += 1
 
     def is_rep_seq(seq: str, s_pos: Dict[chr, List[int]], k: str) -> bool:
-        # could speed up by generating a char pos lookup dict for s as we do this a lot
         i = 0
         for j in range(k):
             for c in seq:
