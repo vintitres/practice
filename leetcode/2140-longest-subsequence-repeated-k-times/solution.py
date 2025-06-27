@@ -22,19 +22,18 @@ class Solution:
         return True
 
     def longestSubsequenceRepeatedK(self, s: str, k: int) -> str:
-        chars = Counter(s)
-        for c in chars.keys():
-            chars[c] = chars[c] // k
+        chars = {}
+        for c, v in Counter(s).items():
+            v //= k
+            if v > 0:
+                chars[c] = v
         b = 0
         e = len(s) // k
         possible = {}
-        print(chars)
         while b < e:
             m = (b + e + 1) // 2
-            print(b, e, m)
             possible[m] = False
             for seq in Solution.possible_seq(chars.copy(), m):
-                print(seq)
                 if Solution.is_rep_seq(seq, s, k):
                     possible[m] = seq
                     break
@@ -42,7 +41,6 @@ class Solution:
                 b = m
             else:
                 e = m - 1
-        print(b, possible)
         return possible[b] or "" if b in possible else ""
         
 
