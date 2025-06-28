@@ -8,7 +8,7 @@ class Solution:
                 heapq.heappush(heap, (num, i))
             elif heap[0][0] < num:
                 heapq.heappushpop(heap, (num, i))
-        return [n for n, _ in sorted(heap, key=itemgetter(1))]
+        return [n for n, _ in sorted(heap, key=lambda tup: tup[1])]
             
 
         
