@@ -12,7 +12,6 @@ class Solution:
                 break
             count += pow(2, j - i, MOD) 
             count %= MOD
-            print(i, j, count)
             i += 1
         return count
         
