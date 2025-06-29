@@ -1,14 +1,4 @@
 class Solution:
-    def excl_sum_mod(n: int, mod: int) -> int:
-        x = 1
-        s = 0
-        for i in range(1, n + 1):
-            x *= i
-            x %= mod
-            s += x
-            s %= mod
-        return s
-
     def numSubseq(self, nums: List[int], target: int) -> int:
         MOD = 10 ** 9 + 7
         nums = sorted(nums)
