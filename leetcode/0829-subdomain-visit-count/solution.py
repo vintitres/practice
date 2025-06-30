@@ -3,7 +3,6 @@ class Solution:
         yield domain
         next_dot = 0
         while True:
-            print(next_dot, domain)
             next_dot = domain.find('.', next_dot)
             if next_dot == -1:
                 break
