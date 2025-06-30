@@ -26,14 +26,6 @@ class Solution:
                 txt.append(Solution.SMALL[num - 1])
         return " ".join(txt)
 
-
-            
-            
-
-
-
-        return str(num)
-
     def numberToWords(self, num: int) -> str:
         if num == 0:
             return Solution.ZERO
