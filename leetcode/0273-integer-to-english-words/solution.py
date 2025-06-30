@@ -47,7 +47,6 @@ class Solution:
                     str_thousand += " " + Solution.THOUSANDS[thousands_count - 1]
                 thousands.append(str_thousand)
             thousands_count += 1
-        print(thousands)
         return " ".join(reversed(thousands))
 
 
