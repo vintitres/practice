@@ -6,7 +6,6 @@ class Solution:
         for i, num in enumerate(nums):
             num_bucket = num // (valueDiff + 1)
             if num_bucket in buckets and len(buckets[num_bucket]):
-                print(buckets[num_bucket])
                 return True
             if num_bucket + 1 in buckets:
                 for v in buckets[num_bucket + 1].keys():
