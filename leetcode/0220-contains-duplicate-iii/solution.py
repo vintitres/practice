@@ -1,14 +1,27 @@
 class Solution:
     def containsNearbyAlmostDuplicate(self, nums: List[int], indexDiff: int, valueDiff: int) -> bool:
-        window = SortedList()
+        buckets = defaultdict(Counter)
+        min_num = min(nums)
+        nums = [num - min_num for num in nums]
         for i, num in enumerate(nums):
-            if window:
-                j = window.bisect_right(num)
-                if min(abs(window[j] - num) if j < len(window) else valueDiff + 1, abs(window[j - 1] - num) if j - 1 < len(window) else valueDiff + 1) <= valueDiff:
-                    return True
-            window.add(num)
+            num_bucket = num // (valueDiff + 1)
+            if num_bucket in buckets and len(buckets[num_bucket]):
+                print(buckets[num_bucket])
+                return True
+            if num_bucket + 1 in buckets:
+                for v in buckets[num_bucket + 1].keys():
+                    if abs(num - v) <= valueDiff:
+                        return True
+            if num_bucket - 1 in buckets:
+                for v in buckets[num_bucket - 1].keys():
+                    if abs(num - v) <= valueDiff:
+                        return True
+            buckets[num_bucket].update([num])
             if i >= indexDiff:
-                window.remove(nums[i - indexDiff])
+                num_to_remove = nums[i - indexDiff]
+                buckets[num_to_remove // (valueDiff + 1)][num_to_remove] -= 1
+                if buckets[num_to_remove // (valueDiff + 1)][num_to_remove] == 0:
+                    del buckets[num_to_remove // (valueDiff + 1)][num_to_remove]
             i += 1
         return False
             
