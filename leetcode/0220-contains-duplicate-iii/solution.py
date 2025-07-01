@@ -11,7 +11,6 @@ class Solution:
             if i >= indexDiff:
                 window.remove(nums[i - indexDiff])
             i += 1
-        print(window)
         return False
             
         
