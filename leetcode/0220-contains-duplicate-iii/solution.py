@@ -2,7 +2,6 @@ class Solution:
     def containsNearbyAlmostDuplicate(self, nums: List[int], indexDiff: int, valueDiff: int) -> bool:
         buckets = {}
         min_num = min(nums)
-        nums = [num - min_num for num in nums]
         for i, num in enumerate(nums):
             num_bucket = num // (valueDiff + 1)
             if num_bucket in buckets:
