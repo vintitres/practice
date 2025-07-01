@@ -13,9 +13,7 @@ class Solution:
                     return True
             buckets[num_bucket] = num
             if i >= indexDiff:
-                num_to_remove = nums[i - indexDiff]
-                del buckets[num_to_remove // (valueDiff + 1)]
-            i += 1
+                del buckets[nums[i - indexDiff] // (valueDiff + 1)]
         return False
             
         
